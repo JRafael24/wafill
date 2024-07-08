@@ -23,7 +23,7 @@ public class UserAuth {
 
     private @Id
     @GeneratedValue Long id;
-    String usernmae;
+    String username;
     String email;
     String password;
 
@@ -35,8 +35,8 @@ public class UserAuth {
 
     UserAuth(){}
 
-    public UserAuth(String usernmae, String email, String password) {
-        this.usernmae = usernmae;
+    public UserAuth(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -46,7 +46,7 @@ public class UserAuth {
     }
 
     public String getUsernmae() {
-        return usernmae;
+        return username;
     }
 
     public String getEmail() {
@@ -62,7 +62,7 @@ public class UserAuth {
     }
 
     public void setUsernmae(String usernmae) {
-        this.usernmae = usernmae;
+        this.username = usernmae;
     }
 
     public void setEmail(String email) {

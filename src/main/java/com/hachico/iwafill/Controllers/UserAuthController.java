@@ -34,7 +34,7 @@ public class UserAuthController {
     @Autowired
     AuthenticationManager authenticationManager;
 
-    @PostMapping("/registes")
+    @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegistrationRequest registrationRequest){
 
         if(userAuthRepository.existsByUsername(registrationRequest.getUsername())){
