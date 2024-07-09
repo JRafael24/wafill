@@ -56,7 +56,33 @@ public class UserAuthController {
 
         userAuthRepository.save(userAuth);
 
-        return new ResponseEntity<>("Usr registered sucessfully", HttpStatus.OK);
+        return new ResponseEntity<>("User registered sucessfully", HttpStatus.OK);
+
+    }
+
+    @PostMapping("/register/user")
+    public ResponseEntity<?> registeruser(@RequestBody RegistrationRequest registrationRequest){
+
+        if(userAuthRepository.existsByUsername(registrationRequest.getUsername())){
+            return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
+        }
+
+        if(userAuthRepository.existsByEmail(registrationRequest.getEmail())){
+            return new ResponseEntity<>("An account is already registered in this email", HttpStatus.BAD_REQUEST);
+        }
+
+        UserAuth userAuth = new UserAuth(
+            registrationRequest.getUsername(),
+            registrationRequest.getEmail(),
+            passwordEncoder.encode(registrationRequest.getPassword())
+        );
+
+        Role role = roleRepository.findByName("ROLE_USER").get();
+        userAuth.setRoles(Collections.singleton(role));
+
+        userAuthRepository.save(userAuth);
+
+        return new ResponseEntity<>("User registered sucessfully", HttpStatus.OK);
 
     }
 
