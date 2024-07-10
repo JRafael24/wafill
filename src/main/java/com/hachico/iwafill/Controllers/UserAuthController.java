@@ -97,7 +97,7 @@ public class UserAuthController {
              new UsernamePasswordAuthenticationToken(
                 loginRequest.getUsernameOrEmail(),
                 loginRequest.getPassword()
-             )   
+                )   
             );
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -106,6 +106,4 @@ public class UserAuthController {
             return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
         }
     }
-
-
 }
